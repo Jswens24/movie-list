@@ -23,16 +23,26 @@ const addMovie = (event) => {
 
 const deleteMovie = (event) => {
     event.target.parentNode.remove();
-    message.textContent = 'Movie Deleted!'
+    message.textContent = 'Movie Deleted!';
+    revealMessage();
 }
 
 const crossOffMovie = (event) => {
     event.target.classList.toggle('checked');
     if (event.target.classList.contains('checked')) {
-        message.textContent = 'Movie Watched!'
+        message.textContent = `${event.target.textContent} Watched!`;
     } else {
-        message.textContent = 'Movie added back!'
+        message.textContent = `${event.target.textContent} added back!`;
     }
+    revealMessage();
+}
+
+const revealMessage = (cb) => {
+    message.classList.remove('hide')
+    cb = () => {
+        message.classList.add('hide')
+    }
+    setTimeout(cb, 1000)
 }
 
 
